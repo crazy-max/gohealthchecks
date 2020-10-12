@@ -2,7 +2,7 @@
   <a href="https://pkg.go.dev/github.com/crazy-max/gohealthchecks"><img src="https://img.shields.io/badge/go.dev-docs-007d9c?logo=go&logoColor=white&style=flat-square" alt="PkgGoDev"></a>
   <a href="https://github.com/crazy-max/gohealthchecks/actions?workflow=test"><img src="https://img.shields.io/github/workflow/status/crazy-max/gohealthchecks/test?label=test&logo=github&style=flat-square" alt="Test workflow"></a>
   <a href="https://goreportcard.com/report/github.com/crazy-max/gohealthchecks"><img src="https://goreportcard.com/badge/github.com/crazy-max/gohealthchecks?style=flat-square" alt="Go Report"></a>
-  <a href="https://www.codacy.com/app/crazy-max/gohealthchecks"><img src="https://img.shields.io/codacy/grade/8e30fc0cf1ce4c3b8ab1e427717458a7/master.svg?style=flat-square" alt="Code Quality"></a>
+  <a href="https://www.codacy.com/app/crazy-max/gohealthchecks"><img src="https://img.shields.io/codacy/grade/fb9fab9be8ec441f957bea4cd26672d1/master.svg?style=flat-square" alt="Code Quality"></a>
   <a href="https://codecov.io/gh/crazy-max/gohealthchecks"><img src="https://img.shields.io/codecov/c/github/crazy-max/gohealthchecks?logo=codecov&style=flat-square" alt="Codecov"></a>
   <br /><a href="https://github.com/sponsors/crazy-max"><img src="https://img.shields.io/badge/sponsor-crazy--max-181717.svg?logo=github&style=flat-square" alt="Become a sponsor"></a>
   <a href="https://www.paypal.me/crazyws"><img src="https://img.shields.io/badge/donate-paypal-00457c.svg?logo=paypal&style=flat-square" alt="Donate Paypal"></a>
