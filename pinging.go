@@ -14,15 +14,15 @@ type PingingOptions struct {
 
 // Success sends a success request to Healthchecks to indicate that a job has completed.
 func (c *Client) Success(ctx context.Context, po PingingOptions) (err error) {
-	return c.request(ctx, http.MethodGet, fmt.Sprintf("/%s", po.UUID), []byte(po.Logs))
+	return c.request(ctx, http.MethodGet, po.UUID, []byte(po.Logs))
 }
 
 // Fail sends a fail request to Healthchecks to indicate that an error has occurred.
 func (c *Client) Fail(ctx context.Context, po PingingOptions) (err error) {
-	return c.request(ctx, http.MethodGet, fmt.Sprintf("/%s/fail", po.UUID), []byte(po.Logs))
+	return c.request(ctx, http.MethodGet, fmt.Sprintf("%s/fail", po.UUID), []byte(po.Logs))
 }
 
 // Start sends a start request to Healthchecks to indicate that a job has started.
 func (c *Client) Start(ctx context.Context, po PingingOptions) (err error) {
-	return c.request(ctx, http.MethodGet, fmt.Sprintf("/%s/start", po.UUID), nil)
+	return c.request(ctx, http.MethodGet, fmt.Sprintf("%s/start", po.UUID), nil)
 }
