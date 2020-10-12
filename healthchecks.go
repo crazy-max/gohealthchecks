@@ -3,8 +3,6 @@ package gohealthchecks
 import (
 	"bytes"
 	"context"
-	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -86,8 +84,8 @@ func (c *Client) request(ctx context.Context, method, path string, body []byte) 
 	}
 	defer drain(r.Body)
 
-	if err = responseErrorHandler(r); err != nil {
-		return err
+	if r.StatusCode != 200 {
+		return fmt.Errorf("HTTP error %d", r.StatusCode)
 	}
 
 	return nil
@@ -106,53 +104,6 @@ func drain(r io.ReadCloser) {
 		_, _ = io.Copy(ioutil.Discard, r)
 		r.Close()
 	}()
-}
-
-// responseErrorHandler returns an error based on the HTTP status code or nil if
-// the status code is from 200 to 299.
-func responseErrorHandler(r *http.Response) (err error) {
-	if r.StatusCode/100 == 2 {
-		return nil
-	}
-	switch r.StatusCode {
-	case http.StatusBadRequest:
-		return decodeBadRequest(r)
-	case http.StatusUnauthorized:
-		return ErrUnauthorized
-	case http.StatusForbidden:
-		return ErrForbidden
-	case http.StatusNotFound:
-		return ErrNotFound
-	case http.StatusTooManyRequests:
-		return ErrTooManyRequests
-	case http.StatusInternalServerError:
-		return ErrInternalServerError
-	case http.StatusServiceUnavailable:
-		return ErrMaintenance
-	default:
-		return errors.New(strings.ToLower(r.Status))
-	}
-}
-
-// decodeBadRequest parses the body of HTTP response that contains a list of
-// errors as the result of bad request data.
-func decodeBadRequest(r *http.Response) (err error) {
-
-	type badRequestResponse struct {
-		Errors []string `json:"errors"`
-	}
-
-	if !strings.Contains(r.Header.Get("Content-Type"), "application/json") {
-		return NewBadRequestError("bad request")
-	}
-	var e badRequestResponse
-	if err = json.NewDecoder(r.Body).Decode(&e); err != nil {
-		if err == io.EOF {
-			return NewBadRequestError("bad request")
-		}
-		return err
-	}
-	return NewBadRequestError(e.Errors...)
 }
 
 // roundTripperFunc type is an adapter to allow the use of ordinary functions as
