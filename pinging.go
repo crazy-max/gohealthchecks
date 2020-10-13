@@ -24,5 +24,5 @@ func (c *Client) Fail(ctx context.Context, po PingingOptions) (err error) {
 
 // Start sends a start request to Healthchecks to indicate that a job has started.
 func (c *Client) Start(ctx context.Context, po PingingOptions) (err error) {
-	return c.request(ctx, http.MethodGet, fmt.Sprintf("%s/start", po.UUID), nil)
+	return c.request(ctx, http.MethodGet, fmt.Sprintf("%s/start", po.UUID), []byte(po.Logs))
 }

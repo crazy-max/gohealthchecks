@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0 (2020/10/13)
+
+* Allow logs for start event
+
 ## 0.1.1 (2020/10/13)
 
 * Fix requests path

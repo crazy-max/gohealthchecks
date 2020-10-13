@@ -36,6 +36,7 @@ func main() {
 
 	err = client.Start(context.Background(), gohealthchecks.PingingOptions{
 		UUID: "5bf66975-d4c7-4bf5-bcc8-b8d8a82ea278",
+		Logs: "Job started!",
 	})
 	if err != nil {
 		log.Fatal(err)

@@ -102,6 +102,28 @@ func TestStart(t *testing.T) {
 	}
 }
 
+func TestStartLogs(t *testing.T) {
+	client, mux, _, teardown := newClient(t)
+	defer teardown()
+
+	mux.HandleFunc(fmt.Sprintf("/%s/start", uuid), func(w http.ResponseWriter, r *http.Request) {
+		b, err := ioutil.ReadAll(r.Body)
+		defer r.Body.Close()
+		if err != nil {
+			t.Fatal(err)
+		}
+		assertEqual(t, "body", string(b), logs)
+		w.Write([]byte(`OK`))
+	})
+
+	if err := client.Start(context.Background(), gohealthchecks.PingingOptions{
+		UUID: uuid,
+		Logs: logs,
+	}); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func assertEqual(t *testing.T, name string, got, want interface{}) {
 	t.Helper()
 
