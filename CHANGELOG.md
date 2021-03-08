@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0 (2021/03/08)
+
+* Go 1.16 support
+
 ## 0.2.0 (2020/10/13)
 
 * Allow logs for start event
