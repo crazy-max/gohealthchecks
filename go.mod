@@ -1,3 +1,3 @@
 module github.com/crazy-max/gohealthchecks
 
-go 1.15
+go 1.13
