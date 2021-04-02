@@ -26,17 +26,23 @@ package main
 import (
 	"context"
 	"log"
+	"net/url"
 
 	"github.com/crazy-max/gohealthchecks"
 )
 
 func main() {
 	var err error
-	// default client uses https://hc-ping.com/ URL
+	
+	// Default client uses https://hc-ping.com/
 	// client := gohealthchecks.NewClient(nil)
 
-	client := gohealthchecks.NewClient(gohealthchecks.ClientOptions{
-		BaseURL: "https://hc.foo.com",
+	hcBaseURL, err := url.Parse("https://hc.foo.com")
+	if err != nil {
+		log.Fatal(err)
+	}
+	client := gohealthchecks.NewClient(&gohealthchecks.ClientOptions{
+		BaseURL: hcBaseURL,
 	})
 
 	err = client.Start(context.Background(), gohealthchecks.PingingOptions{
