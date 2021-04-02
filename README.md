@@ -32,7 +32,12 @@ import (
 
 func main() {
 	var err error
-	client := gohealthchecks.NewClient(nil)
+	// default client uses https://hc-ping.com/ URL
+	// client := gohealthchecks.NewClient(nil)
+
+	client := gohealthchecks.NewClient(gohealthchecks.ClientOptions{
+		BaseURL: "https://hc.foo.com",
+	})
 
 	err = client.Start(context.Background(), gohealthchecks.PingingOptions{
 		UUID: "5bf66975-d4c7-4bf5-bcc8-b8d8a82ea278",
