@@ -1,13 +1,13 @@
 name: gosum
 
+concurrency:
+  group: gosum-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches:
       - 'master'
-    paths:
-      - '.github/workflows/gosum.yml'
-      - 'go.mod'
-      - 'go.sum'
 
 jobs:
   fix:
