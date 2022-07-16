@@ -1,7 +1,7 @@
 name: codeql
 
 concurrency:
-  group: build-${{ github.ref }}
+  group: codeql-${{ github.ref }}
   cancel-in-progress: true
 
 on:
