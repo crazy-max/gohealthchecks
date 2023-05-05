@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1 (2023/05/05)
+
+* Missing version bump
+
 ## 0.4.0 (2023/05/05)
 
 * Go 1.20 support (#7 #15 #19)
