@@ -9,7 +9,7 @@
 
 ## About
 
-Go client library for accessing the [Healthchecks API](https://healthchecks.io/docs/).
+Go client library for accessing the [Healthchecks API](https://healthchecks.io/docs/http_api/).
 
 ## Installation
 
