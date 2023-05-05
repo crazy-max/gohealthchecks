@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0 (2023/05/05)
+
+* Go 1.20 support (#7 #15 #19)
+* Use `POST` method (#18)
+
 ## 0.3.0 (2021/03/08)
 
 * Go 1.16 support
