@@ -3,7 +3,7 @@ package gohealthchecks_test
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"reflect"
 	"testing"
@@ -33,7 +33,7 @@ func TestSuccessLogs(t *testing.T) {
 	defer teardown()
 
 	mux.HandleFunc(fmt.Sprintf("/%s", uuid), func(w http.ResponseWriter, r *http.Request) {
-		b, err := ioutil.ReadAll(r.Body)
+		b, err := io.ReadAll(r.Body)
 		defer r.Body.Close()
 		if err != nil {
 			t.Fatal(err)
@@ -70,7 +70,7 @@ func TestFailLogs(t *testing.T) {
 	defer teardown()
 
 	mux.HandleFunc(fmt.Sprintf("/%s/fail", uuid), func(w http.ResponseWriter, r *http.Request) {
-		b, err := ioutil.ReadAll(r.Body)
+		b, err := io.ReadAll(r.Body)
 		defer r.Body.Close()
 		if err != nil {
 			t.Fatal(err)
@@ -107,7 +107,7 @@ func TestStartLogs(t *testing.T) {
 	defer teardown()
 
 	mux.HandleFunc(fmt.Sprintf("/%s/start", uuid), func(w http.ResponseWriter, r *http.Request) {
-		b, err := ioutil.ReadAll(r.Body)
+		b, err := io.ReadAll(r.Body)
 		defer r.Body.Close()
 		if err != nil {
 			t.Fatal(err)
