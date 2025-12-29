@@ -18,7 +18,7 @@ func TestSuccess(t *testing.T) {
 	defer teardown()
 
 	mux.HandleFunc(fmt.Sprintf("/%s", uuid), func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(`OK`))
+		_, _ = w.Write([]byte(`OK`))
 	})
 
 	if err := client.Success(context.Background(), gohealthchecks.PingingOptions{
@@ -39,7 +39,7 @@ func TestSuccessLogs(t *testing.T) {
 			t.Fatal(err)
 		}
 		assertEqual(t, "body", string(b), logs)
-		w.Write([]byte(`OK`))
+		_, _ = w.Write([]byte(`OK`))
 	})
 
 	if err := client.Success(context.Background(), gohealthchecks.PingingOptions{
@@ -55,7 +55,7 @@ func TestFail(t *testing.T) {
 	defer teardown()
 
 	mux.HandleFunc(fmt.Sprintf("/%s/fail", uuid), func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(`OK`))
+		_, _ = w.Write([]byte(`OK`))
 	})
 
 	if err := client.Fail(context.Background(), gohealthchecks.PingingOptions{
@@ -76,7 +76,7 @@ func TestFailLogs(t *testing.T) {
 			t.Fatal(err)
 		}
 		assertEqual(t, "body", string(b), logs)
-		w.Write([]byte(`OK`))
+		_, _ = w.Write([]byte(`OK`))
 	})
 
 	if err := client.Fail(context.Background(), gohealthchecks.PingingOptions{
@@ -92,7 +92,7 @@ func TestStart(t *testing.T) {
 	defer teardown()
 
 	mux.HandleFunc(fmt.Sprintf("/%s/start", uuid), func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(`OK`))
+		_, _ = w.Write([]byte(`OK`))
 	})
 
 	if err := client.Start(context.Background(), gohealthchecks.PingingOptions{
@@ -113,7 +113,7 @@ func TestStartLogs(t *testing.T) {
 			t.Fatal(err)
 		}
 		assertEqual(t, "body", string(b), logs)
-		w.Write([]byte(`OK`))
+		_, _ = w.Write([]byte(`OK`))
 	})
 
 	if err := client.Start(context.Background(), gohealthchecks.PingingOptions{

@@ -18,7 +18,7 @@ func TestClient(t *testing.T) {
 	defer teardown()
 
 	mux.HandleFunc(fmt.Sprintf("/%s", uuid), func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(`OK`))
+		_, _ = w.Write([]byte(`OK`))
 	})
 
 	if err := client.Success(context.Background(), gohealthchecks.PingingOptions{
