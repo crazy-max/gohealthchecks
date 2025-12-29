@@ -33,8 +33,9 @@ jobs:
         uses: actions/checkout@v4
       -
         name: Lint
-        uses: docker/bake-action@v5
+        uses: docker/bake-action@v6
         with:
+          source: .
           targets: lint
 
   test:
@@ -56,8 +57,9 @@ jobs:
           fetch-depth: 0
       -
         name: Test
-        uses: docker/bake-action@v5
+        uses: docker/bake-action@v6
         with:
+          source: .
           targets: test
         env:
           GO_VERSION: ${{ matrix.go }}
